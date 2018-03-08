@@ -21,7 +21,7 @@ public class Account {
 
     @CommandHandler
     public Account(CreateAccountCommand command){
-        apply(new AccountCreatedEvent(command.getAccountId(), command.getOverDraftLimit()));
+        apply(new AccountCreatedEvent(command.getAccountId(), command.getBalance(), command.getOverDraftLimit()));
     }
 
     @CommandHandler
@@ -36,6 +36,7 @@ public class Account {
     @EventSourcingHandler
     public void on(AccountCreatedEvent event){
         this.accountId = event.getAccountId();
+        this.balance = event.getBalance();
         this.overdraftLimit = event.getOverDraftLimit();
     }
 

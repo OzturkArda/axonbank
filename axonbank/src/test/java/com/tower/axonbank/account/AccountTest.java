@@ -24,20 +24,20 @@ public class AccountTest {
     @Test
     public void testCreateAccount() throws Exception{
         fixture.givenNoPriorActivity()
-                .when(new CreateAccountCommand("1234",1000))
-                .expectEvents(new AccountCreatedEvent("1234",1000));
+                .when(new CreateAccountCommand("1234",1000, 0))
+                .expectEvents(new AccountCreatedEvent("1234",1000, 0));
     }
 
     @Test
     public void withdrawReasonableAmount() throws Exception{
-        fixture.given(new AccountCreatedEvent("1234",1000))
+        fixture.given(new AccountCreatedEvent("1234",1000, 0))
                 .when(new WithdrawMoneyCommand("1234",600))
-                .expectEvents(new MoneyWithdrawnEvent("1234",600,-600));
+                .expectEvents(new MoneyWithdrawnEvent("1234",600,400));
     }
 
     @Test
     public void withdrawAbsurdAmount() throws Exception{
-        fixture.given(new AccountCreatedEvent("1234",1000))
+        fixture.given(new AccountCreatedEvent("1234",1000, 0))
                 .when(new WithdrawMoneyCommand("1234",1001))
                 .expectNoEvents()
                 .expectException(OverdraftLimitExceedException.class);
