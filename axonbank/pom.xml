@@ -60,10 +60,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.axonframework</groupId>
-			<artifactId>axon-spring</artifactId>
-			<version>${axon.version}</version>
-		</dependency>
+		<groupId>org.axonframework</groupId>
+		<artifactId>axon-spring</artifactId>
+		<version>${axon.version}</version>
+	</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
 			<artifactId>kotlin-stdlib-jdk8</artifactId>
